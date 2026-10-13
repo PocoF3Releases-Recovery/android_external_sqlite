@@ -104,6 +104,7 @@ cc_library_static {
 // MB) is not desirable, like microdroid.
 cc_library_static {
     name: "libsqlite3_android_noicu",
+    recovery_available: true,
     defaults: ["libsqlite3_android_defaults"],
     // Not define SQLITE_ENABLE_ICU
     apex_available: [

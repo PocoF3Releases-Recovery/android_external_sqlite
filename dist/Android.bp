@@ -141,6 +141,7 @@ cc_defaults {
 
 cc_library {
     name: "libsqlite",
+    recovery_available: true,
     defaults: [
         "sqlite-defaults",
         "release_package_libsqlite3_library_defaults",
@@ -150,6 +151,11 @@ cc_library {
     native_bridge_supported: true,
 
     target: {
+        recovery: {
+            cflags: ["-USQLITE_ENABLE_ICU"],
+            exclude_shared_libs: ["libandroidicu"],
+            exclude_static_libs: ["libsqlite3_android"],
+        },
         android: {
             shared_libs: [
                 "libdl",
@@ -206,6 +212,7 @@ cc_library {
 // desirable, like microdroid.
 cc_library_static {
     name: "libsqlite_static_noicu",
+    recovery_available: true,
     defaults: [
         "sqlite-defaults",
         "release_package_libsqlite3_library_defaults",
